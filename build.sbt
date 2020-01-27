@@ -3,7 +3,6 @@ val V = new {
   val scalatest       = "3.1.0"
   val scalacheck      = "1.14.3"
   val http4s          = "0.21.0-RC1"
-  val doobie          = "0.8.8"
   val zio             = "1.0.0-RC17"
   val zioCats         = "2.0.0.0-RC10"
   val kindProjector   = "0.11.0"
@@ -26,10 +25,6 @@ val Deps = new {
   val http4sCirce  = "org.http4s" %% "http4s-circe" % V.http4s
 
   val circeDerivation = "io.circe" %% "circe-derivation" % V.circeDerivation
-
-  val doobie         = "org.tpolecat" %% "doobie-core" % V.doobie
-  val doobiePostgres = "org.tpolecat" %% "doobie-postgres" % V.doobie
-  val doobieHikari   = "org.tpolecat" %% "doobie-hikari" % V.doobie
 
   val kindProjector = "org.typelevel" % "kind-projector" % V.kindProjector cross CrossVersion.full
 
@@ -63,9 +58,6 @@ lazy val leaderboard = project
       Deps.http4sClient % Test,
       Deps.http4sCirce,
       Deps.circeDerivation,
-      Deps.doobie,
-      Deps.doobiePostgres,
-      Deps.doobieHikari,
       Deps.zio,
       Deps.zioCats,
     ),

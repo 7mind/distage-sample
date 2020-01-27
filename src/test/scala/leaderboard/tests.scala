@@ -17,9 +17,6 @@ abstract class LeaderboardTest extends DistageBIOSpecScalatest[IO] with DISyntax
     pluginConfig = PluginConfig.cached(packagesEnabled = Seq("leaderboard.plugins")),
     moduleOverrides = new ModuleDef {
       make[Rnd[IO]].from[Rnd.Impl[IO]]
-      // For testing, setup a docker container with postgres,
-      // instead of trying to connect to an external database
-      include(PostgresDockerModule)
     },
     // instantiate Ladder & Profiles only once per test-run and
     // share them and all their dependencies across all tests.
