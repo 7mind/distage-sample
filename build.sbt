@@ -4,7 +4,6 @@ val V = new {
   val scalatest       = "3.1.1"
   val scalacheck      = "1.14.3"
   val http4s          = "0.21.3"
-  val doobie          = "0.9.0"
   val zio             = "1.0.0-RC18-2"
   val zioCats         = "2.0.0.0-RC12"
   val kindProjector   = "0.11.0"
@@ -44,6 +43,7 @@ inThisBuild(
     scalaVersion := "2.13.1",
     version      := "1.0.0-SNAPSHOT",
     organization := "io.7mind",
+    run / fork   := true,
   )
 )
 
@@ -66,9 +66,6 @@ lazy val leaderboard = project
       Deps.http4sClient % Test,
       Deps.http4sCirce,
       Deps.circeDerivation,
-      Deps.doobie,
-      Deps.doobiePostgres,
-      Deps.doobieHikari,
       Deps.zio,
       Deps.zioCats,
     ),
