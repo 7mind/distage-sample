@@ -68,6 +68,6 @@ lazy val leaderboard = project
       Deps.circeDerivation,
       Deps.zio,
       Deps.zioCats,
-    ),
+    ).map(_.exclude("org.scala-lang", "scala-reflect")),
     addCompilerPlugin(Deps.kindProjector),
   )
