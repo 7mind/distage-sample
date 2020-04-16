@@ -14,12 +14,12 @@ val Deps = new {
   val scalatest  = "org.scalatest" %% "scalatest" % V.scalatest
   val scalacheck = "org.scalacheck" %% "scalacheck" % V.scalacheck
 
-  val distageCore    = "io.7mind.izumi" %% "distage-core" % V.distage
-  val distageConfig  = "io.7mind.izumi" %% "distage-extension-config" % V.distage
-  val distageRoles   = "io.7mind.izumi" %% "distage-framework" % V.distage
-  val distageDocker  = "io.7mind.izumi" %% "distage-framework-docker" % V.distage
-  val distageTestkit = "io.7mind.izumi" %% "distage-testkit-scalatest" % V.distage
-  val logstageSlf4j  = "io.7mind.izumi" %% "logstage-adapter-slf4j" % V.logstage
+  val distageCore            = "io.7mind.izumi" %% "distage-core" % V.distage
+  val distageRoles           = "io.7mind.izumi" %% "distage-framework" % V.distage
+  val distageDocker          = "io.7mind.izumi" %% "distage-framework-docker" % V.distage
+  val distageTestkit         = "io.7mind.izumi" %% "distage-testkit-scalatest" % V.distage
+  val fundamentalsReflection = "io.7mind.izumi" %% "fundamentals-reflection" % V.distage
+  val logstageSlf4j          = "io.7mind.izumi" %% "logstage-adapter-slf4j" % V.logstage
 
   val http4sDsl    = "org.http4s" %% "http4s-dsl" % V.http4s
   val http4sServer = "org.http4s" %% "http4s-blaze-server" % V.http4s
@@ -27,10 +27,6 @@ val Deps = new {
   val http4sCirce  = "org.http4s" %% "http4s-circe" % V.http4s
 
   val circeDerivation = "io.circe" %% "circe-derivation" % V.circeDerivation
-
-  val doobie         = "org.tpolecat" %% "doobie-core" % V.doobie
-  val doobiePostgres = "org.tpolecat" %% "doobie-postgres" % V.doobie
-  val doobieHikari   = "org.tpolecat" %% "doobie-hikari" % V.doobie
 
   val kindProjector = "org.typelevel" % "kind-projector" % V.kindProjector cross CrossVersion.full
 
@@ -53,13 +49,16 @@ lazy val leaderboard = project
     name := "leaderboard",
     scalacOptions --= Seq("-Werror", "-Xfatal-warnings"),
     libraryDependencies ++= Seq(
-      Deps.distageCore,
       Deps.distageRoles,
-      Deps.distageConfig,
-      Deps.logstageSlf4j,
-      Deps.distageDocker % Test,
       Deps.distageTestkit % Test,
+      Deps.distageDocker % Test,
       Deps.scalatest % Test,
+      "com.github.pureconfig" %% "pureconfig-magnolia" % "0.12.3",
+      "com.propensive" %% "magnolia" % "0.14.5",
+    ).map(_.exclude("org.scala-lang", "scala-reflect")) ++ Seq(
+      Deps.fundamentalsReflection,
+      Deps.logstageSlf4j,
+      Deps.distageCore,
       Deps.scalacheck % Test,
       Deps.http4sDsl,
       Deps.http4sServer,

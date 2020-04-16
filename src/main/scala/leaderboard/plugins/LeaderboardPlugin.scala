@@ -7,6 +7,7 @@ import izumi.distage.roles.bundled.BundledRolesModule
 import leaderboard.LeaderboardRole
 import leaderboard.http.HttpApi
 import leaderboard.repo.{Ladder, Profiles, Ranks}
+import magnolia.Magnolia
 import org.http4s.dsl.Http4sDsl
 import zio.IO
 
@@ -14,6 +15,8 @@ object LeaderboardPlugin extends PluginDef {
   include(modules.roles[IO])
   include(modules.api[IO])
   include(modules.repoDummy[IO])
+
+  Magnolia.keepLeft(Left(()))
 
   object modules {
     def roles[F[+_, +_]: TagKK]: ModuleDef = new ModuleDef {
