@@ -1,6 +1,6 @@
 val V = new {
-  val distage         = "0.10.3-M2"
-  val logstage        = "0.10.3-M2"
+  val distage         = "0.10.4"
+  val logstage        = "0.10.4"
   val scalatest       = "3.1.1"
   val scalacheck      = "1.14.3"
   val http4s          = "0.21.3"
@@ -27,10 +27,6 @@ val Deps = new {
   val http4sCirce  = "org.http4s" %% "http4s-circe" % V.http4s
 
   val circeDerivation = "io.circe" %% "circe-derivation" % V.circeDerivation
-
-  val doobie         = "org.tpolecat" %% "doobie-core" % V.doobie
-  val doobiePostgres = "org.tpolecat" %% "doobie-postgres" % V.doobie
-  val doobieHikari   = "org.tpolecat" %% "doobie-hikari" % V.doobie
 
   val kindProjector = "org.typelevel" % "kind-projector" % V.kindProjector cross CrossVersion.full
 
